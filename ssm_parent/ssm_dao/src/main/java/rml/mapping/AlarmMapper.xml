@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="rml.dao.AlarmMapper" >
+
+  <resultMap id="BaseResultMap" type="rml.model.Alarm" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="asset_id" property="assetId" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="ts" property="ts" jdbcType="INTEGER" />
+    <result column="priority" property="priority" jdbcType="INTEGER" />
+    <result column="input_source" property="inputSource" jdbcType="VARCHAR" />
+    <result column="target_address" property="targetAddress" jdbcType="VARCHAR" />
+    <result column="policy_type" property="policyType" jdbcType="VARCHAR" />
+    <result column="confirm_user_name" property="confirmUserName" jdbcType="VARCHAR" />
+    <result column="confirm_time" property="confirmTime" jdbcType="TIMESTAMP" />
+    <result column="confirm_content" property="confirmContent" jdbcType="VARCHAR" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, asset_id, content, ts, priority, input_source, target_address, policy_type, confirm_user_name, confirm_time, confirm_content, insert_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from alarm
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from alarm
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+   <select id="getAll" resultMap="BaseResultMap">
+	select * from alarm
+  </select>
+</mapper>
